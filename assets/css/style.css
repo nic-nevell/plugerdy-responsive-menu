@@ -1,0 +1,194 @@
+:root {
+  --plugerdy-responsive-menu-width: 50vw;
+  --plugerdy-responsive-menu-color: inherit;
+  --plugerdy-responsive-menu-padding: 2em;
+  --plugerdy-nav-btn-size: 36px;
+  --plugerdy-nav-btn-height: 2px;
+  --plugerdy-nav-btn-color: black;
+}
+
+.plugerdy-responsive-menu-body-no-scroll {
+  overflow: hidden;
+}
+
+.plugerdy-responsive-menu {
+  padding: var(--plugerdy-responsive-menu-padding);
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  z-index: 1000 !important;
+  opacity: var(--plugerdy-responsive-menu-opacity, 1);
+
+  width: max(var(--plugerdy-responsive-menu-width), 200px);
+  height: 100vh;
+  background-color: var(--plugerdy-responsive-menu-background-color, rgb(0, 0, 0));
+}
+
+.plugerdy-responsive-menu ul {
+  margin-right: 1em;
+  list-style: none;
+}
+
+.plugerdy-responsive-menu ul > :not(:first-child) {
+  margin-top: 1em;
+}
+
+.plugerdy-responsive-menu[aria-expanded='false'] a {
+  display: none;
+}
+
+.plugerdy-responsive-menu[aria-expanded='true'] {
+  will-change: transform;
+  animation: plugerdy-animate-menu 300ms forwards linear;
+}
+@keyframes plugerdy-animate-menu {
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+.plugerdy-responsive-menu a {
+  display: block;
+  opacity: 0;
+  transform: translateY(100%);
+  text-transform: capitalize;
+  font-size: 2em;
+  text-decoration: none;
+  color: var(--plugerdy-responsive-menu-color);
+}
+
+.plugerdy-responsive-menu[aria-expanded='true'] a {
+  animation: plugerdy-animate-links 250ms 500ms forwards linear;
+}
+
+@keyframes plugerdy-animate-links {
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.plugerdy-responsive-menu.from-top {
+  top: 0;
+  right: 0;
+  transform-origin: top;
+  transform: scale(1, 0);
+}
+
+.plugerdy-responsive-menu.from-bottom {
+  top: 0;
+  right: 0;
+  transform-origin: bottom;
+  transform: scale(1, 0);
+}
+
+.plugerdy-responsive-menu.from-left {
+  top: 0;
+  left: 0;
+  transform-origin: left;
+  transform: scale(0, 1);
+}
+
+.plugerdy-responsive-menu.from-right {
+  top: 0;
+  right: 0;
+  transform-origin: right;
+  transform: scale(0, 1);
+}
+
+.from-center.plugerdy-responsive-menu {
+  top: 0;
+  right: 0;
+  transform-origin: center;
+  transform: scale(0, 0);
+}
+
+/* 
+*
+* Apply styles to burger button 
+*
+*/
+
+.plugerdy-btn-burger {
+  margin-left: auto;
+  align-self: center;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  z-index: 9999;
+  width: 36px;
+  height: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.plugerdy-responsive-menu .plugerdy-btn-burger {
+  opacity: 0;
+}
+
+.plugerdy-responsive-menu[aria-expanded='true'].animation-off .plugerdy-btn-burger {
+  animation: plugerdy-btn-animate 500ms 300ms linear forwards;
+}
+
+.plugerdy-responsive-menu[aria-expanded='true'].animation-on .plugerdy-btn-burger {
+  transform: translateX(80%) rotate(180deg);
+  animation: plugerdy-btn-animate 500ms 300ms linear forwards;
+}
+
+@keyframes plugerdy-btn-animate {
+  100% {
+    transform: translateX(0) rotate(0);
+    opacity: 1;
+  }
+}
+
+.plugerdy-btn-burger .bar {
+  position: relative;
+  display: block;
+  width: var(--plugerdy-nav-btn-size);
+  height: var(--plugerdy-nav-btn-height);
+  border-radius: 1px;
+  background-color: var(--plugerdy-nav-btn-color);
+}
+
+.plugerdy-btn-burger .bar-top {
+  transform: translateY(-6px);
+}
+
+.plugerdy-btn-burger .bar-bottom {
+  transform: translateY(6px);
+}
+
+.plugerdy-btn-burger[aria-expanded='true'] {
+  position: absolute;
+  top: var(--plugerdy-responsive-menu-padding);
+  right: var(--plugerdy-responsive-menu-padding);
+}
+
+.plugerdy-btn-burger[aria-expanded='true']:hover {
+  transition: all 500ms linear;
+  transform: rotate(90deg);
+}
+
+.plugerdy-btn-burger[aria-expanded='true'] .bar {
+  transition: all 250ms linear;
+  background-color: var(--plugerdy-responsive-menu-color);
+  width: 28px;
+}
+
+.plugerdy-btn-burger[aria-expanded='true'] .bar-top {
+  transform: translateY(var(--plugerdy-nav-btn-height)) rotate(-45deg);
+}
+
+.plugerdy-btn-burger[aria-expanded='true'] .bar-middle {
+  opacity: 0;
+}
+
+.plugerdy-btn-burger[aria-expanded='true'] .bar-bottom {
+  transform: translateY(calc(var(--plugerdy-nav-btn-height) * -1)) rotate(45deg);
+}
