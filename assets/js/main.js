@@ -3,19 +3,19 @@
  */
 
 // Get references to DOM elements
-const widget = document.getElementById('plugerdyResponsiveMenu')
-const btn = document.querySelector('#webliteNavMenuToggle')
-const navMenu = document.querySelector('#webliteNavMenu')
+const widget = document.getElementById('plugerdy_responsive_menu')
+const btn = document.querySelector('#plugerdy_nav_toggle')
+const navMenu = document.querySelector('#plugerdy_responsive_nav')
 const docBody = document.body
 
 
 // Function to handle clicks
-function webliteNavMenuHandleClick() {
+function plugerdy_responsive_menu_handle_Click() {
   // Initialize ariaExpanded variable
   let ariaExpanded = btn.getAttribute('aria-expanded')
 
-  // Toggle 'plugerdy-responsive-menu-body-no-scroll' class on the <body> element to enable/disable scrolling.
-  docBody.classList.toggle('plugerdy-responsive-menu-body-no-scroll')
+  // Toggle 'plugerdy-responsive-nav-body-no-scroll' class on the <body> element to enable/disable scrolling.
+  docBody.classList.toggle('plugerdy-responsive-nav-body-no-scroll')
 
   // Determine the new value of ariaExpanded attribute
   // Update the aria-expanded attribute of the button and navigation menu
@@ -41,7 +41,7 @@ function webliteNavMenuHandleClick() {
     widget.appendChild(btn)
     widget.appendChild(navMenu)
 
-    window.removeEventListener('resize', webliteNavMenuHandleClick)
+    window.removeEventListener('resize', plugerdy_responsive_menu_handle_Click)
 
   }
 
@@ -58,7 +58,7 @@ function webliteNavMenuHandleClick() {
     docBody.appendChild(navMenu)
     navMenu.appendChild(btn)
 
-    window.addEventListener('resize', webliteNavMenuHandleClick)
+    window.addEventListener('resize', plugerdy_responsive_menu_handle_Click)
   }
 
   // Update the value of ariaExpanded for the next click event
@@ -66,7 +66,7 @@ function webliteNavMenuHandleClick() {
 }
 
 // Attach click event listener to the toggle button
-if (btn) btn.addEventListener('click', webliteNavMenuHandleClick)
+if (btn) btn.addEventListener('click', plugerdy_responsive_menu_handle_Click)
 
 
 

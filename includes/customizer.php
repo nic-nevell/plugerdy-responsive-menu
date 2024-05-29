@@ -25,7 +25,7 @@ function weblite_nav_menu_customizer_settings($wp_customize)
   $wp_customize->add_section(
     'weblite_nav_menu_settings',
     array(
-      'title' => __('Weblite Responsive Menu', 'plugerdy-responsive-menu'),
+      'title' => __('Plugerdy Responsive Menu', 'plugerdy-responsive-nav'),
       'priority' => 30,
       'description' => 'Please resize the preview pane to revel the navigation button before customization'
     )
@@ -47,7 +47,7 @@ function weblite_nav_menu_customizer_settings($wp_customize)
       $wp_customize,
       'weblite_nav_btn_color',
       array(
-        'label' => __('Button Color', 'plugerdy-responsive-menu'),
+        'label' => __('Button Color', 'plugerdy-responsive-nav'),
         'section' => 'weblite_nav_menu_settings',
         'settings' => 'weblite_nav_btn_color',
       ),
@@ -64,7 +64,7 @@ function weblite_nav_menu_customizer_settings($wp_customize)
   $wp_customize->add_control(
     'weblite_nav_btn_size',
     array(
-      'label' => __('Button size', 'plugerdy-responsive-menu'),
+      'label' => __('Button size', 'plugerdy-responsive-nav'),
       'section' => 'weblite_nav_menu_settings',
       'settings' => 'weblite_nav_btn_size',
       'transport' => 'postMessage',
@@ -92,16 +92,16 @@ function weblite_nav_menu_customizer_settings($wp_customize)
   $wp_customize->add_control(
     'weblite_nav_menu_reveal_direction',
     array(
-      'label' => __('Reveal Direction', 'plugerdy-responsive-menu'),
+      'label' => __('Reveal Direction', 'plugerdy-responsive-nav'),
       'section' => 'weblite_nav_menu_settings',
       'settings' => 'weblite_nav_menu_reveal_direction',
       'type' => 'radio',
       'choices' => array(
-        'from-top' => __('Top', 'plugerdy-responsive-menu'),
-        'from-bottom' => __('Bottom', 'plugerdy-responsive-menu'),
-        'from-center' => __('center', 'plugerdy-responsive-menu'),
-        'from-right' => __('Right', 'plugerdy-responsive-menu'),
-        'from-left' => __('Left', 'plugerdy-responsive-menu'),
+        'from-top' => __('Top', 'plugerdy-responsive-nav'),
+        'from-bottom' => __('Bottom', 'plugerdy-responsive-nav'),
+        'from-center' => __('center', 'plugerdy-responsive-nav'),
+        'from-right' => __('Right', 'plugerdy-responsive-nav'),
+        'from-left' => __('Left', 'plugerdy-responsive-nav'),
       ),
     )
   );
@@ -119,7 +119,7 @@ function weblite_nav_menu_customizer_settings($wp_customize)
   $wp_customize->add_control(
     'weblite_nav_menu_width',
     array(
-      'label' => __('Menu Width (%)', 'plugerdy-responsive-menu'),
+      'label' => __('Menu Width (%)', 'plugerdy-responsive-nav'),
       'description' => 'Defaults to min of 200px to stop menu overflow on small screens',
       'section' => 'weblite_nav_menu_settings',
       'settings' => 'weblite_nav_menu_width',
@@ -149,7 +149,7 @@ function weblite_nav_menu_customizer_settings($wp_customize)
       $wp_customize,
       'weblite_nav_menu_bg_color',
       array(
-        'label' => __('Background Color', 'plugerdy-responsive-menu'),
+        'label' => __('Background Color', 'plugerdy-responsive-nav'),
         'section' => 'weblite_nav_menu_settings',
         'settings' => 'weblite_nav_menu_bg_color',
       )
@@ -169,7 +169,7 @@ function weblite_nav_menu_customizer_settings($wp_customize)
   $wp_customize->add_control(
     'weblite_nav_menu_opacity',
     array(
-      'label' => __('Menu Opacity (%)', 'plugerdy-responsive-menu'),
+      'label' => __('Menu Opacity (%)', 'plugerdy-responsive-nav'),
       'section' => 'weblite_nav_menu_settings',
       'settings' => 'weblite_nav_menu_opacity',
       'transport' => 'postMessage',
@@ -219,7 +219,7 @@ function weblite_nav_menu_customizer_settings($wp_customize)
   $wp_customize->add_control(
     'my_plugin_license_key',
     array(
-      'label' => __('Enter your license key:', 'plugerdy-responsive-menu'),
+      'label' => __('Enter your license key:', 'plugerdy-responsive-nav'),
       'section' => 'weblite_nav_menu_settings',
       'type' => 'text',
     )
@@ -239,13 +239,13 @@ function weblite_nav_menu_customizer_settings($wp_customize)
   $wp_customize->add_control(
     'weblite_nav_menu_animation',
     array(
-      'label' => __('Menu Animation', 'plugerdy-responsive-menu'),
+      'label' => __('Menu Animation', 'plugerdy-responsive-nav'),
       'section' => 'weblite_nav_menu_settings',
       'settings' => 'weblite_nav_menu_animation',
       'type' => 'radio',
       'choices' => array(
-        'animation-off' => __('Off', 'plugerdy-responsive-menu'),
-        'animation-on' => __('On', 'plugerdy-responsive-menu'),
+        'animation-off' => __('Off', 'plugerdy-responsive-nav'),
+        'animation-on' => __('On', 'plugerdy-responsive-nav'),
       ),
     )
   );
@@ -258,7 +258,7 @@ function weblite_nav_menu_customizer_settings($wp_customize)
 function weblite_nav_menu_enqueue_preview_script()
 {
   wp_enqueue_script(
-    'plugerdy-responsive-menu--preview',
+    'plugerdy-responsive-nav--preview',
     plugin_dir_url(__FILE__) . 'customize-preview.js', // Updated file path
     array('jquery', 'customize-preview'),
     false,
@@ -281,7 +281,7 @@ function weblite_nav_menu_dynamic_css()
 
   $custom_css = ":root {";
   if ($menu_width)
-    $custom_css .= "--plugerdy-responsive-menu-width: {$menu_width}vw;";
+    $custom_css .= "--plugerdy-responsive-nav-width: {$menu_width}vw;";
   if ($menu_btn_size)
     $custom_css .= "--plugerdy-nav-btn-size: {$menu_btn_size}px;";
   if ($menu_btn_color)
@@ -290,9 +290,9 @@ function weblite_nav_menu_dynamic_css()
     $custom_css .= "--plugerdy-nav-btn-background-color: {$menu_background};";
   if ($menu_opacity)
     $menu_opacity = $menu_opacity / 100;
-  $custom_css .= "--plugerdy-responsive-menu-opacity: {$menu_opacity};";
+  $custom_css .= "--plugerdy-responsive-nav-opacity: {$menu_opacity};";
   if ($menu_color)
-    $custom_css .= "--plugerdy-responsive-menu-color: {$menu_color};";
+    $custom_css .= "--plugerdy-responsive-nav-color: {$menu_color};";
   $custom_css .= "}";
 
   if (!empty(trim($custom_css, ":root {};"))) {
@@ -310,7 +310,7 @@ function weblite_nav_menu_premium_dynamic_css()
 
   $custom_css = ":root {";
   if ($menu_animation)
-    $custom_css .= "--plugerdy-responsive-menu-width: {$menu_width}vw;";
+    $custom_css .= "--plugerdy-responsive-nav-width: {$menu_width}vw;";
 
   if (!empty(trim($custom_css, ":root {};"))) {
     echo "<style type='text/css'>{$custom_css}</style>";

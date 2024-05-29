@@ -1,43 +1,43 @@
 :root {
-  --plugerdy-responsive-menu-width: 50vw;
-  --plugerdy-responsive-menu-color: inherit;
-  --plugerdy-responsive-menu-padding: 2em;
+  --plugerdy-responsive-nav-width: 50vw;
+  --plugerdy-responsive-nav-color: inherit;
+  --plugerdy-responsive-nav-padding: 2em;
   --plugerdy-nav-btn-size: 36px;
   --plugerdy-nav-btn-height: 2px;
   --plugerdy-nav-btn-color: black;
 }
 
-.plugerdy-responsive-menu-body-no-scroll {
+.plugerdy-responsive-nav-body-no-scroll {
   overflow: hidden;
 }
 
-.plugerdy-responsive-menu {
-  padding: var(--plugerdy-responsive-menu-padding);
+.plugerdy-responsive-nav {
+  padding: var(--plugerdy-responsive-nav-padding);
   display: flex;
   flex-direction: column;
   position: absolute;
   z-index: 1000 !important;
-  opacity: var(--plugerdy-responsive-menu-opacity, 1);
+  opacity: var(--plugerdy-responsive-nav-opacity, 1);
 
-  width: max(var(--plugerdy-responsive-menu-width), 200px);
+  width: max(var(--plugerdy-responsive-nav-width), 200px);
   height: 100vh;
-  background-color: var(--plugerdy-responsive-menu-background-color, rgb(0, 0, 0));
+  background-color: var(--plugerdy-responsive-nav-background-color, rgb(0, 0, 0));
 }
 
-.plugerdy-responsive-menu ul {
+.plugerdy-responsive-nav ul {
   margin-right: 1em;
   list-style: none;
 }
 
-.plugerdy-responsive-menu ul > :not(:first-child) {
+.plugerdy-responsive-nav ul > :not(:first-child) {
   margin-top: 1em;
 }
 
-.plugerdy-responsive-menu[aria-expanded='false'] a {
+.plugerdy-responsive-nav[aria-expanded='false'] a {
   display: none;
 }
 
-.plugerdy-responsive-menu[aria-expanded='true'] {
+.plugerdy-responsive-nav[aria-expanded='true'] {
   will-change: transform;
   animation: plugerdy-animate-menu 300ms forwards linear;
 }
@@ -47,17 +47,17 @@
   }
 }
 
-.plugerdy-responsive-menu a {
+.plugerdy-responsive-nav a {
   display: block;
   opacity: 0;
   transform: translateY(100%);
   text-transform: capitalize;
   font-size: 2em;
   text-decoration: none;
-  color: var(--plugerdy-responsive-menu-color);
+  color: var(--plugerdy-responsive-nav-color);
 }
 
-.plugerdy-responsive-menu[aria-expanded='true'] a {
+.plugerdy-responsive-nav[aria-expanded='true'] a {
   animation: plugerdy-animate-links 250ms 500ms forwards linear;
 }
 
@@ -68,35 +68,35 @@
   }
 }
 
-.plugerdy-responsive-menu.from-top {
+.plugerdy-responsive-nav.from-top {
   top: 0;
   right: 0;
   transform-origin: top;
   transform: scale(1, 0);
 }
 
-.plugerdy-responsive-menu.from-bottom {
+.plugerdy-responsive-nav.from-bottom {
   top: 0;
   right: 0;
   transform-origin: bottom;
   transform: scale(1, 0);
 }
 
-.plugerdy-responsive-menu.from-left {
+.plugerdy-responsive-nav.from-left {
   top: 0;
   left: 0;
   transform-origin: left;
   transform: scale(0, 1);
 }
 
-.plugerdy-responsive-menu.from-right {
+.plugerdy-responsive-nav.from-right {
   top: 0;
   right: 0;
   transform-origin: right;
   transform: scale(0, 1);
 }
 
-.from-center.plugerdy-responsive-menu {
+.from-center.plugerdy-responsive-nav {
   top: 0;
   right: 0;
   transform-origin: center;
@@ -127,15 +127,15 @@
   align-items: center;
 }
 
-.plugerdy-responsive-menu .plugerdy-btn-burger {
+.plugerdy-responsive-nav .plugerdy-btn-burger {
   opacity: 0;
 }
 
-.plugerdy-responsive-menu[aria-expanded='true'].animation-off .plugerdy-btn-burger {
+.plugerdy-responsive-nav[aria-expanded='true'].animation-off .plugerdy-btn-burger {
   animation: plugerdy-btn-animate 500ms 300ms linear forwards;
 }
 
-.plugerdy-responsive-menu[aria-expanded='true'].animation-on .plugerdy-btn-burger {
+.plugerdy-responsive-nav[aria-expanded='true'].animation-on .plugerdy-btn-burger {
   transform: translateX(80%) rotate(180deg);
   animation: plugerdy-btn-animate 500ms 300ms linear forwards;
 }
@@ -166,8 +166,8 @@
 
 .plugerdy-btn-burger[aria-expanded='true'] {
   position: absolute;
-  top: var(--plugerdy-responsive-menu-padding);
-  right: var(--plugerdy-responsive-menu-padding);
+  top: var(--plugerdy-responsive-nav-padding);
+  right: var(--plugerdy-responsive-nav-padding);
 }
 
 .plugerdy-btn-burger[aria-expanded='true']:hover {
@@ -177,7 +177,7 @@
 
 .plugerdy-btn-burger[aria-expanded='true'] .bar {
   transition: all 250ms linear;
-  background-color: var(--plugerdy-responsive-menu-color);
+  background-color: var(--plugerdy-responsive-nav-color);
   width: 28px;
 }
 
