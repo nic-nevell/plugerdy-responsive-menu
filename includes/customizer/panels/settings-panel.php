@@ -201,6 +201,7 @@ function register_plugerdy_responsive_menu_advanced_section(\WP_Customize_Manage
   array(
    'label' => __('Enter your license key:', 'plugerdy-responsive-menu'),
    'section' => 'plugerdy_responsive_menu_advanced_section',
+   'settings' => 'plugerdy_responsive_menu_license_key',
    'type' => 'text',
   )
  );

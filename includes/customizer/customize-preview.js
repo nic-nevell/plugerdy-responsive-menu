@@ -79,6 +79,21 @@
       $('.plugerdy-responsive-menu')
         .removeClass('animation-off animation-on')
         .addClass(to)
+
+           // Check if aria-expanded is false
+           if ($('.plugerdy-responsive-menu').attr('aria-expanded') === 'false') {
+            // Trigger a click event on the burger button to open the menu
+            $('#plugerdy_nav_toggle').trigger('click')
+    
+          } else {
+            // If aria-expanded is true, set it to false
+            $('.plugerdy-responsive-menu').attr('aria-expanded', 'false')
+    
+            // Add a delay before setting aria-expanded to true
+            setTimeout(() => {
+              $('.plugerdy-responsive-menu').attr('aria-expanded', 'true')
+            }, 250)
+          }
     })
   })
 

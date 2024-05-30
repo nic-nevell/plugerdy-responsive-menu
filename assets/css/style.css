@@ -38,10 +38,15 @@
   display: none;
 }
 
-.plugerdy-responsive-menu[aria-expanded='true'] {
+.plugerdy-responsive-menu[aria-expanded='true'].animation-off {
+  transform: scale(1, 1);
+}
+
+.plugerdy-responsive-menu[aria-expanded='true'].animation-on {
   will-change: transform;
   animation: plugerdy-animate-menu 300ms forwards linear;
 }
+
 @keyframes plugerdy-animate-menu {
   100% {
     transform: scale(1, 1);
@@ -175,7 +180,7 @@
 
 .plugerdy-btn-burger[aria-expanded='true'] .bar {
   transition: all 250ms linear;
-  /* background-color: var(--plugerdy-responsive-menu-color); */
+  background-color: var(--plugerdy-responsive-menu-color);
   width: 28px;
 }
 
