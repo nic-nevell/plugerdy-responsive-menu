@@ -1,32 +1,32 @@
 /**
  * Customizer preview setup for Plugerdy Responsive Menu.
  *
- * @package Weblite_Nav_Menu_Widget\Customize_Preview
+ * @package plugerdy_Nav_Menu_Widget\Customize_Preview
  */
 
 (function ($) {
   // Live preview logic for  btn size
-  wp.customize('weblite_nav_btn_size', function (value) {
+  wp.customize('plugerdy_nav_btn_size', function (value) {
     value.bind(function (to) {
       $('.plugerdy-btn-burger .bar').css('width', to)
     })
   })
   // Live preview logic for button  color
-  wp.customize('weblite_nav_btn_color', function (value) {
+  wp.customize('plugerdy_nav_btn_color', function (value) {
     value.bind(function (to) {
       $('.plugerdy-btn-burger .bar').css('background-color', to)
     })
   })
 
   // Live preview logic for navigation menu background color
-  wp.customize('weblite_nav_menu_bg_color', function (value) {
+  wp.customize('plugerdy_nav_menu_bg_color', function (value) {
     value.bind(function (to) {
       $('.plugerdy-responsive-nav').css('background-color', to)
     })
   })
 
   // Live preview logic for navigation menu opacity
-  wp.customize('weblite_nav_menu_opacity', function (value) {
+  wp.customize('plugerdy_nav_menu_opacity', function (value) {
     value.bind(function (to) {
       to = to / 100
       $('.plugerdy-responsive-nav').css('opacity', to)
@@ -34,7 +34,7 @@
   })
 
   // Live preview logic for navigation menu text color
-  wp.customize('weblite_nav_menu_text_color', function (value) {
+  wp.customize('plugerdy_nav_menu_text_color', function (value) {
     value.bind(function (to) {
       $('.plugerdy-responsive-nav a').css('color', to)
       $('.plugerdy-btn-burger .bar').css('background-color', to)
@@ -42,14 +42,14 @@
   })
 
   // Live preview logic for navigation menu width
-  wp.customize('weblite_nav_menu_width', function (value) {
+  wp.customize('plugerdy_nav_menu_width', function (value) {
     value.bind(function (to) {
       $('.plugerdy-responsive-nav').css('width', 'max(' + to + 'vw, 200px)')
     })
   })
 
   // Live preview logic for navigation menu reveal direction
-  wp.customize('weblite_nav_menu_reveal_direction', function (value) {
+  wp.customize('plugerdy_nav_menu_reveal_direction', function (value) {
     value.bind(function (to) {
       $('.plugerdy-responsive-nav')
         .removeClass('from-top from-bottom from-center from-right from-left')
@@ -74,7 +74,7 @@
   })
 
   // Live preview logic for navigation menu reveal direction
-  wp.customize('weblite_nav_menu_animation', function (value) {
+  wp.customize('plugerdy_nav_menu_animation', function (value) {
     value.bind(function (to) {
       $('.plugerdy-responsive-nav')
         .removeClass('animation-off animation-on')
