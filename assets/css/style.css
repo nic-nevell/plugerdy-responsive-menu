@@ -5,6 +5,7 @@
   --plugerdy-nav-btn-size: 36px;
   --plugerdy-nav-btn-height: 2px;
   --plugerdy-nav-btn-color: black;
+  --plugerdy-nav-font-size: 1em;
 }
 
 .plugerdy-responsive-nav-body-no-scroll {
@@ -52,7 +53,7 @@
   opacity: 0;
   transform: translateY(100%);
   text-transform: capitalize;
-  font-size: 2em;
+  font-size: var(--plugerdy-nav-font-size);
   text-decoration: none;
   color: var(--plugerdy-responsive-nav-color);
 }
