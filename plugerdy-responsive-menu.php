@@ -158,74 +158,83 @@ class Plugerdy_Responsive_Menu extends WP_Widget {
         }
     }
 
-    /**
-     * Widget form function.
-     *
-     * @param array $instance Widget instance.
-     */
-    public function form($instance) {
-        global $wp_customize;
-        $title = isset($instance['title']) ? $instance['title'] : '';
-        $nav_menu = isset($instance['nav_menu']) ? $instance['nav_menu'] : '';
+/**
+ * Widget form function.
+ *
+ * @param array $instance Widget instance.
+ */
+public function form($instance) {
+    global $wp_customize;
+    $nav_menu = isset($instance['nav_menu']) ? $instance['nav_menu'] : '';
+     // URL for the thumbnail image
+     $thumbnail_url = plugin_dir_url(__FILE__) . 'assets/images/thumbnail.png';
 
-        // Get menus.
-        $menus = wp_get_nav_menus();
+    // Get menus.
+    $menus = wp_get_nav_menus();
 
-        $empty_menus_style = '';
-        $not_empty_menus_style = '';
-        if (empty($menus)) {
-            $empty_menus_style = ' style="display:none" ';
-        } else {
-            $not_empty_menus_style = ' style="display:none" ';
-        }
-
-        $nav_menu_style = '';
-        if (!$nav_menu) {
-            $nav_menu_style = 'display: none;';
-        }
-
-        // If no menus exist, direct the user to go and create some.
-        ?>
-        <p class="nav-menu-widget-no-menus-message" <?php echo $not_empty_menus_style; ?>>
-            <?php
-            if ($wp_customize instanceof WP_Customize_Manager) {
-                $url = 'javascript: wp.customize.panel( "nav_menus" ).focus();';
-            } else {
-                $url = admin_url('nav-menus.php');
-            }
-
-            printf(
-                /* translators: %s: URL to create a new menu. */
-                __('No menus have been created yet. <a href="%s">Create some</a>.'),
-                // The URL can be a `javascript:` link, so esc_attr() is used here instead of esc_url().
-                esc_attr($url)
-            );
-            ?>
-        </p>
-        <div class="nav-menu-widget-form-controls" <?php echo $empty_menus_style; ?>>
-            <p>
-                <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label>
-                <input type="text" class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" value="<?php echo esc_attr($title); ?>" />
-            </p>
-            <p>
-                <label for="<?php echo $this->get_field_id('nav_menu'); ?>"><?php _e('Select Menu:'); ?></label>
-                <select id="<?php echo $this->get_field_id('nav_menu'); ?>" name="<?php echo $this->get_field_name('nav_menu'); ?>">
-                    <option value="0"><?php _e('&mdash; Select &mdash;'); ?></option>
-                    <?php foreach ($menus as $menu) : ?>
-                        <option value="<?php echo esc_attr($menu->term_id); ?>" <?php selected($nav_menu, $menu->term_id); ?>>
-                            <?php echo esc_html($menu->name); ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-            </p>
-            <?php if ($wp_customize instanceof WP_Customize_Manager) : ?>
-                <p class="edit-selected-nav-menu" style="<?php echo $nav_menu_style; ?>">
-                    <button type="button" class="button"><?php _e('Edit Menu'); ?></button>
-                </p>
-            <?php endif; ?>
-        </div>
-        <?php
+    $empty_menus_style = '';
+    $not_empty_menus_style = '';
+    if (empty($menus)) {
+        $empty_menus_style = ' style="display:none" ';
+    } else {
+        $not_empty_menus_style = ' style="display:none" ';
     }
+
+    $nav_menu_style = '';
+    if (!$nav_menu) {
+        $nav_menu_style = 'display: none;';
+    }
+
+    // If no menus exist, direct the user to go and create some.
+    ?>
+    <p class="nav-menu-widget-no-menus-message" <?php echo $not_empty_menus_style; ?>>
+        <?php
+        if ($wp_customize instanceof WP_Customize_Manager) {
+            $url = 'javascript: wp.customize.panel( "nav_menus" ).focus();';
+        } else {
+            $url = admin_url('nav-menus.php');
+        }
+
+        printf(
+            /* translators: %s: URL to create a new menu. */
+            __('No menus have been created yet. <a href="%s">Create some</a>.'),
+            // The URL can be a `javascript:` link, so esc_attr() is used here instead of esc_url().
+            esc_attr($url)
+        );
+        ?>
+    </p>
+    <div class="nav-menu-widget-form-controls" <?php echo $empty_menus_style; ?>>
+        <!-- Add the thumbnail preview -->
+        <p>
+            <label><?php _e('Preview:'); ?></label>
+            <img  src="<?php echo esc_url($thumbnail_url); ?>" alt="<?php _e('Widget Thumbnail'); ?>" style="max-width: 20%; height: auto;" />
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('nav_menu'); ?>">
+                <?php _e('Select Menu:'); ?>
+            </label>
+            <select id="<?php echo $this->get_field_id('nav_menu'); ?>" name="<?php echo $this->get_field_name('nav_menu'); ?>">
+                <option value="0"><?php _e('&mdash; Select &mdash;'); ?></option>
+                <?php foreach ($menus as $menu) : ?>
+                    <option value="<?php echo esc_attr($menu->term_id); ?>" <?php selected($nav_menu, $menu->term_id); ?>>
+                        <?php echo esc_html($menu->name); ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+
+            <br>
+                <button type="button" class="button" onclick="window.location.href='<?php echo esc_url(admin_url('nav-menus.php')); ?>';"><?php _e('Or Create/Edit Menu here'); ?></button>
+                <br>
+            </p>
+        <?php if ($wp_customize instanceof WP_Customize_Manager) : ?>
+            <p class="edit-selected-nav-menu" style="<?php echo $nav_menu_style; ?>">&nbs
+            <button type="button" class="button" onclick="window.location.href='<?php echo esc_url(admin_url('nav-menus.php')); ?>';"><?php _e('Create Menu'); ?></button>
+            </p>
+        <?php endif; ?>
+    </div>
+    <?php
+}
+
 
     /**
      * Update widget settings.
@@ -236,7 +245,6 @@ class Plugerdy_Responsive_Menu extends WP_Widget {
      */
     public function update($new_instance, $old_instance) {
         $instance = array();
-        $instance['title'] = (!empty($new_instance['title'])) ? strip_tags($new_instance['title']) : '';
         $instance['nav_menu'] = (!empty($new_instance['nav_menu'])) ? strip_tags($new_instance['nav_menu']) : '';
         return $instance;
     }
