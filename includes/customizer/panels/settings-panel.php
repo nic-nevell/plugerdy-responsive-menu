@@ -12,7 +12,6 @@ if (!defined('ABSPATH')) {
 // Add action to register the panel
 add_action('customize_register', 'register_plugerdy_responsive_menu_panel');
 
-// echo 'settings panel is included';
 /**
  * Register the Panel within Customize.
  *
@@ -22,7 +21,6 @@ add_action('customize_register', 'register_plugerdy_responsive_menu_panel');
  */
 function register_plugerdy_responsive_menu_panel(\WP_Customize_Manager $wp_customize)
 {
- echo 'adding panel';
  // Create a panel for settings
  $wp_customize->add_panel(
   'plugerdy_responsive_menu',
@@ -46,7 +44,7 @@ function register_plugerdy_responsive_menu_panel(\WP_Customize_Manager $wp_custo
  */
 function register_plugerdy_responsive_menu_basic_section(\WP_Customize_Manager $wp_customize)
 {
- // Basic Footer Settings Section
+ // Basic Settings Section
  $wp_customize->add_section('plugerdy_responsive_menu_basic_section', array(
   'title' => esc_html__('Basic Settings', ''),
   'panel' => 'plugerdy_responsive_menu',
@@ -56,19 +54,19 @@ function register_plugerdy_responsive_menu_basic_section(\WP_Customize_Manager $
  // Width settings
  //
  $wp_customize->add_setting(
-  'plugerdy_nav_menu_width',
+  'plugerdy_responsive_menu_width',
   array(
    'transport' => 'postMessage',
    'sanitize_callback' => 'absint',
   )
  );
  $wp_customize->add_control(
-  'plugerdy_nav_menu_width',
+  'plugerdy_responsive_menu_width',
   array(
-   'label' => __('Menu Width (%)', 'plugerdy-responsive-nav'),
+   'label' => __('Menu Width (%)', 'plugerdy-responsive-menu'),
    'description' => 'Defaults to min of 200px to stop menu overflow on small screens',
    'section' => 'plugerdy_responsive_menu_basic_section',
-   'settings' => 'plugerdy_nav_menu_width',
+   'settings' => 'plugerdy_responsive_menu_width',
    'transport' => 'postMessage',
    'type' => 'range',
    'input_attrs' => array(
@@ -83,7 +81,7 @@ function register_plugerdy_responsive_menu_basic_section(\WP_Customize_Manager $
  // Background color
  //
  $wp_customize->add_setting(
-  'plugerdy_nav_menu_bg_color',
+  'plugerdy_responsive_menu_bg_color',
   array(
    'transport' => 'postMessage',
    'sanitize_callback' => 'sanitize_hex_color',
@@ -93,11 +91,11 @@ function register_plugerdy_responsive_menu_basic_section(\WP_Customize_Manager $
  $wp_customize->add_control(
   new WP_Customize_Color_Control(
    $wp_customize,
-   'plugerdy_nav_menu_bg_color',
+   'plugerdy_responsive_menu_bg_color',
    array(
-    'label' => __('Background Color', 'plugerdy-responsive-nav'),
+    'label' => __('Background Color', 'plugerdy-responsive-menu'),
     'section' => 'plugerdy_responsive_menu_basic_section',
-    'settings' => 'plugerdy_nav_menu_bg_color',
+    'settings' => 'plugerdy_responsive_menu_bg_color',
    )
   )
  );
@@ -106,18 +104,18 @@ function register_plugerdy_responsive_menu_basic_section(\WP_Customize_Manager $
  // Opacity settings
  //
  $wp_customize->add_setting(
-  'plugerdy_nav_menu_opacity',
+  'plugerdy_responsive_menu_opacity',
   array(
    'transport' => 'postMessage',
    'sanitize_callback' => 'absint',
   )
  );
  $wp_customize->add_control(
-  'plugerdy_nav_menu_opacity',
+  'plugerdy_responsive_menu_opacity',
   array(
-   'label' => __('Menu Opacity (%)', 'plugerdy-responsive-nav'),
+   'label' => __('Menu Opacity (%)', 'plugerdy-responsive-menu'),
    'section' => 'plugerdy_responsive_menu_basic_section',
-   'settings' => 'plugerdy_nav_menu_opacity',
+   'settings' => 'plugerdy_responsive_menu_opacity',
    'transport' => 'postMessage',
    'type' => 'range',
    'input_attrs' => array(
@@ -150,7 +148,7 @@ function register_plugerdy_responsive_menu_basic_section(\WP_Customize_Manager $
  // Text color
  //
  $wp_customize->add_setting(
-  'plugerdy_nav_menu_text_color',
+  'plugerdy_responsive_menu_text_color',
   array(
    'transport' => 'postMessage',
    'sanitize_callback' => 'sanitize_hex_color',
@@ -160,11 +158,11 @@ function register_plugerdy_responsive_menu_basic_section(\WP_Customize_Manager $
  $wp_customize->add_control(
   new WP_Customize_Color_Control(
    $wp_customize,
-   'plugerdy_nav_menu_text_color',
+   'plugerdy_responsive_menu_text_color',
    array(
     'label' => __('Text Color', ''),
     'section' => 'plugerdy_responsive_menu_basic_section',
-    'settings' => 'plugerdy_nav_menu_text_color',
+    'settings' => 'plugerdy_responsive_menu_text_color',
    )
   )
  );
@@ -181,7 +179,7 @@ function register_plugerdy_responsive_menu_basic_section(\WP_Customize_Manager $
 function register_plugerdy_responsive_menu_advanced_section(\WP_Customize_Manager $wp_customize)
 {
 
-  // Basic Footer Settings Section
+  // Advanced Settings Section
  $wp_customize->add_section('plugerdy_responsive_menu_advanced_section', array(
   'title' => esc_html__('Advanced Settings', ''),
   'panel' => 'plugerdy_responsive_menu',
@@ -191,7 +189,7 @@ function register_plugerdy_responsive_menu_advanced_section(\WP_Customize_Manage
  // License settings
  //
  $wp_customize->add_setting(
-  'plugerdy_nav_menu_license_key',
+  'plugerdy_responsive_menu_license_key',
   array(
    'default' => 'plugerdyABCD',
    'sanitize_callback' => 'sanitize_text_field',
@@ -201,7 +199,7 @@ function register_plugerdy_responsive_menu_advanced_section(\WP_Customize_Manage
  $wp_customize->add_control(
   'my_plugin_license_key',
   array(
-   'label' => __('Enter your license key:', 'plugerdy-responsive-nav'),
+   'label' => __('Enter your license key:', 'plugerdy-responsive-menu'),
    'section' => 'plugerdy_responsive_menu_advanced_section',
    'type' => 'text',
   )
@@ -211,7 +209,7 @@ function register_plugerdy_responsive_menu_advanced_section(\WP_Customize_Manage
  // Menu Animation
  //
  $wp_customize->add_setting(
-  'plugerdy_nav_menu_animation',
+  'plugerdy_responsive_menu_animation',
   array(
    'default' => 'animation-off',
    'transport' => 'postMessage',
@@ -219,15 +217,15 @@ function register_plugerdy_responsive_menu_advanced_section(\WP_Customize_Manage
   )
  );
  $wp_customize->add_control(
-  'plugerdy_nav_menu_animation',
+  'plugerdy_responsive_menu_animation',
   array(
-   'label' => __('Menu Animation', 'plugerdy-responsive-nav'),
+   'label' => __('Menu Animation', 'plugerdy-responsive-menu'),
    'section' => 'plugerdy_responsive_menu_advanced_section',
-   'settings' => 'plugerdy_nav_menu_animation',
+   'settings' => 'plugerdy_responsive_menu_animation',
    'type' => 'radio',
    'choices' => array(
-    'animation-off' => __('Off', 'plugerdy-responsive-nav'),
-    'animation-on' => __('On', 'plugerdy-responsive-nav'),
+    'animation-off' => __('Off', 'plugerdy-responsive-menu'),
+    'animation-on' => __('On', 'plugerdy-responsive-menu'),
    ),
   )
  );
@@ -236,7 +234,7 @@ function register_plugerdy_responsive_menu_advanced_section(\WP_Customize_Manage
  // Button settings
  //
  $wp_customize->add_setting(
-  'plugerdy_nav_btn_color',
+  'plugerdy_responsive_menu_btn_color',
   array(
    'transport' => 'postMessage',
    'sanitize_callback' => 'sanitize_hex_color',
@@ -247,28 +245,28 @@ function register_plugerdy_responsive_menu_advanced_section(\WP_Customize_Manage
  $wp_customize->add_control(
   new WP_Customize_Color_Control(
    $wp_customize,
-   'plugerdy_nav_btn_color',
+   'plugerdy_responsive_menu_btn_color',
    array(
-    'label' => __('Button Color', 'plugerdy-responsive-nav'),
+    'label' => __('Button Color', 'plugerdy-responsive-menu'),
     'section' => 'plugerdy_responsive_menu_advanced_section',
-    'settings' => 'plugerdy_nav_btn_color',
+    'settings' => 'plugerdy_responsive_menu_btn_color',
    ),
   )
  );
 
  $wp_customize->add_setting(
-  'plugerdy_nav_btn_size',
+  'plugerdy_responsive_menu_btn_size',
   array(
    'transport' => 'postMessage',
    'sanitize_callback' => 'absint',
   )
  );
  $wp_customize->add_control(
-  'plugerdy_nav_btn_size',
+  'plugerdy_responsive_menu_btn_size',
   array(
-   'label' => __('Button size', 'plugerdy-responsive-nav'),
+   'label' => __('Button size', 'plugerdy-responsive-menu'),
    'section' => 'plugerdy_responsive_menu_advanced_section',
-   'settings' => 'plugerdy_nav_btn_size',
+   'settings' => 'plugerdy_responsive_menu_btn_size',
    'transport' => 'postMessage',
    'type' => 'range',
    'input_attrs' => array(
@@ -283,7 +281,7 @@ function register_plugerdy_responsive_menu_advanced_section(\WP_Customize_Manage
  // Reveal direction
  //
  $wp_customize->add_setting(
-  'plugerdy_nav_menu_reveal_direction',
+  'plugerdy_responsive_nav_reveal_direction',
   array(
    'default' => 'from-right',
    'transport' => 'postMessage',
@@ -291,18 +289,18 @@ function register_plugerdy_responsive_menu_advanced_section(\WP_Customize_Manage
   )
  );
  $wp_customize->add_control(
-  'plugerdy_nav_menu_reveal_direction',
+  'plugerdy_responsive_nav_reveal_direction',
   array(
-   'label' => __('Reveal Direction', 'plugerdy-responsive-nav'),
+   'label' => __('Reveal Direction', 'plugerdy-responsive-menu'),
    'section' => 'plugerdy_responsive_menu_advanced_section',
-   'settings' => 'plugerdy_nav_menu_reveal_direction',
+   'settings' => 'plugerdy_responsive_nav_reveal_direction',
    'type' => 'radio',
    'choices' => array(
-    'from-top' => __('Top', 'plugerdy-responsive-nav'),
-    'from-bottom' => __('Bottom', 'plugerdy-responsive-nav'),
-    'from-center' => __('center', 'plugerdy-responsive-nav'),
-    'from-right' => __('Right', 'plugerdy-responsive-nav'),
-    'from-left' => __('Left', 'plugerdy-responsive-nav'),
+    'from-top' => __('Top', 'plugerdy-responsive-menu'),
+    'from-bottom' => __('Bottom', 'plugerdy-responsive-menu'),
+    'from-center' => __('center', 'plugerdy-responsive-menu'),
+    'from-right' => __('Right', 'plugerdy-responsive-menu'),
+    'from-left' => __('Left', 'plugerdy-responsive-menu'),
    ),
   )
  );

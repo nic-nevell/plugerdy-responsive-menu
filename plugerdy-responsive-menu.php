@@ -5,8 +5,11 @@
  * Version: 1.0.0
  * Author: Nic Nevell
  * Author URI: https://plugerdy.com
- * Text Domain: plugerdy-responsive-nav
+ * Text Domain: plugerdy-responsive-menu
  */
+
+// Include Customizer settings
+require_once plugin_dir_path(__FILE__) . 'includes/customizer/customizer.php';
 
 class Plugerdy_Responsive_Menu extends WP_Widget {
 
@@ -18,7 +21,7 @@ class Plugerdy_Responsive_Menu extends WP_Widget {
             'description' => __('Adds a responsive navigation menu to your WordPress site.'),
             // 'customize_selective_refresh' => true,
             // 'show_instance_in_rest' => true,
-            'classname' => 'plugerdy-responsive-nav-widget', // Optional CSS class
+            'classname' => 'plugerdy-responsive-menu-widget', // Optional CSS class
         ); // An array of options to configure the widget
 
         parent::__construct(
@@ -29,6 +32,7 @@ class Plugerdy_Responsive_Menu extends WP_Widget {
 
         // Add assets (CSS, JS, etc.)
         add_action('wp_enqueue_scripts', array($this, 'load_assets'));
+        add_action('wp_head', array($this, 'output_dynamic_css'));
     }
 
     /**
@@ -39,8 +43,8 @@ class Plugerdy_Responsive_Menu extends WP_Widget {
      */
     public function widget($args, $instance) {
         // Get the selected reveal direction from Customizer settings
-        $reveal_direction = get_theme_mod('plugerdy_nav_menu_reveal_direction');
-        $premium_animation = get_theme_mod('plugerdy_nav_menu_animation');
+        $reveal_direction = get_theme_mod('plugerdy_responsive_nav_reveal_direction');
+        $premium_animation = get_theme_mod('plugerdy_responsive_menu_animation');
 
         // Get the selected menu ID
         $nav_menu = !empty($instance['nav_menu']) ? $instance['nav_menu'] : '';
@@ -74,7 +78,7 @@ class Plugerdy_Responsive_Menu extends WP_Widget {
             </button>
 
             <!-- Output navigation menu -->
-            <nav class="plugerdy-responsive-nav <?php echo esc_attr($reveal_direction); ?> <?php echo esc_attr($premium_animation); ?>" id="plugerdy_responsive_nav" aria-expanded="false">
+            <nav class="plugerdy-responsive-menu <?php echo esc_attr($reveal_direction); ?> <?php echo esc_attr($premium_animation); ?>" id="plugerdy_responsive_nav" aria-expanded="false">
                 <?php
                 wp_nav_menu(array(
                     'menu' => $nav_menu, // Use the selected menu ID
@@ -93,7 +97,7 @@ class Plugerdy_Responsive_Menu extends WP_Widget {
     public function load_assets() {
         // Enqueue CSS with versioning based on file modification time
         wp_enqueue_style(
-            'plugerdy_nav_menu_css', // Handle for the stylesheet
+            'plugerdy_responsive_menu_css', // Handle for the stylesheet
             plugin_dir_url(__FILE__) . 'assets/css/style.css', // URL of the CSS file
             array(), // Dependencies (none in this case)
             filemtime(plugin_dir_path(__FILE__) . 'assets/css/style.css'), // Version number based on file modification time
@@ -102,12 +106,56 @@ class Plugerdy_Responsive_Menu extends WP_Widget {
 
         // Enqueue JavaScript with versioning based on file modification time
         wp_enqueue_script(
-            'plugerdy_nav_menu_js', // Handle for the script
+            'plugerdy_responsive_menu_js', // Handle for the script
             plugin_dir_url(__FILE__) . 'assets/js/main.js', // URL of the JavaScript file
             array('jquery'), // Dependencies (jQuery in this case)
             filemtime(plugin_dir_path(__FILE__) . 'assets/js/main.js'), // Version number based on file modification time
             true // Add to footer
         );
+    }
+
+    /**
+     * Output dynamic CSS based on Customizer settings.
+     */
+    public function output_dynamic_css() {
+        $menu_width = get_theme_mod('plugerdy_responsive_menu_width');
+        $menu_btn_size = get_theme_mod('plugerdy_responsive_menu_btn_size');
+        $menu_btn_color = get_theme_mod('plugerdy_responsive_menu_btn_color');
+        $menu_background = get_theme_mod('plugerdy_responsive_menu_bg_color');
+        $menu_opacity = get_theme_mod('plugerdy_responsive_menu_opacity');
+        $menu_color = get_theme_mod('plugerdy_responsive_menu_text_color');
+
+        $custom_css = ":root {";
+        if ($menu_width) {
+            $custom_css .= "--plugerdy-responsive-menu-width: {$menu_width}vw;";
+        }
+
+        if ($menu_btn_size) {
+            $custom_css .= "--plugerdy-responsive-menu-btn-size: {$menu_btn_size}px;";
+        }
+
+        if ($menu_btn_color) {
+            $custom_css .= "--plugerdy-responsive-menu-btn-color: {$menu_btn_color};";
+        }
+
+        if ($menu_background) {
+            $custom_css .= "--plugerdy-responsive-menu-bg-color: {$menu_background};";
+        }
+
+        if ($menu_opacity) {
+            $menu_opacity = $menu_opacity / 100;
+            $custom_css .= "--plugerdy-responsive-menu-opacity: {$menu_opacity};";
+        }
+
+        if ($menu_color) {
+            $custom_css .= "--plugerdy-responsive-menu-color: {$menu_color};";
+        }
+
+        $custom_css .= "}";
+
+        if (!empty(trim($custom_css, ":root {};"))) {
+            echo "<style type='text/css'>{$custom_css}</style>";
+        }
     }
 
     /**
@@ -201,6 +249,3 @@ function register_plugerdy_responsive_menu() {
     register_widget('Plugerdy_Responsive_Menu');
 }
 add_action('widgets_init', 'register_plugerdy_responsive_menu');
-
-// Include Customizer settings
-include plugin_dir_path(__FILE__) . 'includes/customizer/customizer.php';
