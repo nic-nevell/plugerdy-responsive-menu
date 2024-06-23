@@ -14,8 +14,8 @@ function plugerdy_responsive_menu_handle_Click() {
   // Initialize ariaExpanded variable
   let ariaExpanded = btn.getAttribute('aria-expanded')
 
-  // Toggle 'plugerdy-responsive-menu-body-no-scroll' class on the <body> element to enable/disable scrolling.
-  docBody.classList.toggle('plugerdy-responsive-menu-body-no-scroll')
+  // Toggle 'plugerdy-responsive-nav-body-no-scroll' class on the <body> element to enable/disable scrolling.
+  docBody.classList.toggle('plugerdy-responsive-nav-body-no-scroll')
 
   // Determine the new value of ariaExpanded attribute
   // Update the aria-expanded attribute of the button and navigation menu
