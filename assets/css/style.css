@@ -1,48 +1,52 @@
 :root {
   --plugerdy-responsive-menu-width: 50vw;
-  --plugerdy-responsive-menu-color: inherit;
+  --plugerdy-responsive-menu-color: #000000;
   --plugerdy-responsive-menu-padding: 2em;
   --plugerdy-responsive-menu-btn-size: 36px;
   --plugerdy-responsive-menu-btn-height: 2px;
-  --plugerdy-responsive-menu-btn-color: black;
+  --plugerdy-responsive-menu-btn-color: #000000;
   --plugerdy-responsive-menu-font-size: 1em;
+  --plugerdy-responsive-menu-font-weight: normal;
+  --plugerdy-responsive-menu-bg-color: #ffffff;
 }
 
-.plugerdy-responsive-menu-body-no-scroll {
+.plugerdy-responsive-nav-body-no-scroll {
   overflow: hidden;
 }
 
-.plugerdy-responsive-menu {
+.plugerdy-responsive-nav {
   padding: var(--plugerdy-responsive-menu-padding);
   display: flex;
   flex-direction: column;
   position: absolute;
   z-index: 1000 !important;
-  opacity: var(--plugerdy-responsive-menu-opacity, 1);
+  opacity: var(--plugerdy-responsive-menu-opacity);
+  font-weight: var(--plugerdy-responsive-menu-font-weight);
+  font-size: var(--plugerdy-responsive-menu-font-size);
 
   width: max(var(--plugerdy-responsive-menu-width), 200px);
   height: 100vh;
-  background-color: var(--plugerdy-responsive-menu-bg-color, rgb(0, 0, 0));
+  background-color: var(--plugerdy-responsive-menu-bg-color);
 }
 
-.plugerdy-responsive-menu ul {
+.plugerdy-responsive-nav ul {
   margin-right: 1em;
   list-style: none;
 }
 
-.plugerdy-responsive-menu ul > :not(:first-child) {
+.plugerdy-responsive-nav ul > :not(:first-child) {
   margin-top: 1em;
 }
 
-.plugerdy-responsive-menu[aria-expanded='false'] a {
+.plugerdy-responsive-nav[aria-expanded='false'] a {
   display: none;
 }
 
-.plugerdy-responsive-menu[aria-expanded='true'].animation-off {
+.plugerdy-responsive-nav[aria-expanded='true'].animation-off {
   transform: scale(1, 1);
 }
 
-.plugerdy-responsive-menu[aria-expanded='true'].animation-on {
+.plugerdy-responsive-nav[aria-expanded='true'].animation-on {
   will-change: transform;
   animation: plugerdy-animate-menu 300ms forwards linear;
 }
@@ -53,15 +57,14 @@
   }
 }
 
-.plugerdy-responsive-menu a {
+.plugerdy-responsive-nav a {
   display: block;
   text-transform: capitalize;
-  font-size: var(--plugerdy-responsive-menu-font-size);
   text-decoration: none;
   color: var(--plugerdy-responsive-menu-color);
 }
 
-.plugerdy-responsive-menu[aria-expanded='true'].animation-on a {
+.plugerdy-responsive-nav[aria-expanded='true'].animation-on a {
   transform: translateY(100%);
   opacity: 0;
   animation: plugerdy-animate-links 250ms 500ms forwards linear;
@@ -74,39 +77,43 @@
   }
 }
 
-.plugerdy-responsive-menu.from-top {
+.plugerdy-responsive-nav.from-top {
   top: 0;
   right: 0;
   transform-origin: top;
   transform: scale(1, 0);
 }
 
-.plugerdy-responsive-menu.from-bottom {
+.plugerdy-responsive-nav.from-bottom {
   top: 0;
   right: 0;
   transform-origin: bottom;
   transform: scale(1, 0);
 }
 
-.plugerdy-responsive-menu.from-left {
+.plugerdy-responsive-nav.from-left {
   top: 0;
   left: 0;
   transform-origin: left;
   transform: scale(0, 1);
 }
 
-.plugerdy-responsive-menu.from-right {
+.plugerdy-responsive-nav.from-right {
   top: 0;
   right: 0;
   transform-origin: right;
   transform: scale(0, 1);
 }
 
-.from-center.plugerdy-responsive-menu {
+.from-center.plugerdy-responsive-nav {
   top: 0;
   right: 0;
   transform-origin: center;
   transform: scale(0, 0);
+}
+
+.plugerdy-responsive-nav[aria-expanded='true'] {
+  transform: scale(1, 1)
 }
 
 /* 
@@ -133,11 +140,11 @@
   align-items: center;
 }
 
-.plugerdy-responsive-menu[aria-expanded='true'].animation-off .plugerdy-btn-burger {
+.plugerdy-responsive-nav[aria-expanded='true'].animation-off .plugerdy-btn-burger {
   animation: plugerdy-btn-animate 500ms 300ms linear forwards;
 }
 
-.plugerdy-responsive-menu[aria-expanded='true'].animation-on .plugerdy-btn-burger {
+.plugerdy-responsive-nav[aria-expanded='true'].animation-on .plugerdy-btn-burger {
   opacity: 0;
   transform: translateX(80%) rotate(180deg);
   animation: plugerdy-btn-animate 500ms 300ms linear forwards;

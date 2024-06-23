@@ -3,9 +3,9 @@
  */
 
 // Get references to DOM elements
-const widget = document.getElementById('plugerdy_responsive_menu')
-const btn = document.querySelector('#plugerdy_nav_toggle')
-const navMenu = document.querySelector('#plugerdy_responsive_nav')
+const widget = document.getElementById('plugerdy-responsive-menu')
+const btn = document.querySelector('#plugerdy-nav-toggle')
+const navMenu = document.querySelector('#plugerdy-responsive-nav')
 const docBody = document.body
 
 
