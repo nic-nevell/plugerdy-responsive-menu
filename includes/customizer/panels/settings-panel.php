@@ -102,6 +102,27 @@ function plugerdy_responsive_menu_basic_section(\WP_Customize_Manager $wp_custom
  );
 
  //
+ // Shadow settings
+ //
+ $wp_customize->add_setting('plugerdy_responsive_menu_shadow', array(
+  'default' => '',
+  'transport' => 'postMessage',
+  'sanitize_callback' => 'sanitize_text_field',
+ ));
+
+ $wp_customize->add_control('plugerdy_responsive_menu_shadow_control', array(
+  'label' => esc_html__('Menu Shadow', 'plugerdy_responsive_menu'),
+  'section' => 'plugerdy_responsive_menu_basic_section',
+  'settings' => 'plugerdy_responsive_menu_shadow',
+  'type' => 'radio',
+  'choices' => array(
+   '' => esc_html__('None', 'plugerdy_responsive_menu'),
+   'shadow-light' => esc_html__('Light', 'plugerdy_responsive_menu'),
+   'shadow-dark' => esc_html__('Dark', 'plugerdy_responsive_menu'),
+  ),
+ ));
+
+ //
  // Opacity settings
  //
  $wp_customize->add_setting(
@@ -139,30 +160,30 @@ function plugerdy_responsive_menu_basic_section(\WP_Customize_Manager $wp_custom
   'label' => esc_html__('Font Size', ''),
   'section' => 'plugerdy_responsive_menu_basic_section',
   'input_attrs' => array(
-    'min' => 10,
-    'max' => 30,
-    'step' => 1,
+   'min' => 10,
+   'max' => 30,
+   'step' => 1,
   ),
-));
+ ));
 
 //
-// Font Weight Control
-//
-$wp_customize->add_setting('plugerdy_responsive_menu_font_weight', array(
+ // Font Weight Control
+ //
+ $wp_customize->add_setting('plugerdy_responsive_menu_font_weight', array(
   'default' => 'normal',
   'transport' => 'postMessage',
   'sanitize_callback' => 'sanitize_text_field',
-));
+ ));
 
-$wp_customize->add_control('plugerdy_responsive_menu_font_weight', array(
+ $wp_customize->add_control('plugerdy_responsive_menu_font_weight', array(
   'type' => 'radio',
   'label' => esc_html__('Font Weight', 'weblite'),
   'section' => 'plugerdy_responsive_menu_basic_section',
   'choices' => array(
-      'normal' => 'Normal',
-      'bold' => 'Bold',
+   'normal' => 'Normal',
+   'bold' => 'Bold',
   ),
-));
+ ));
 
  //
  // Text color

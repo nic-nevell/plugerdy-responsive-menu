@@ -131,8 +131,10 @@ class Plugerdy_Responsive_Menu extends WP_Widget
     public function widget($args, $instance)
     {
         // Get the selected reveal direction from Customizer settings
-        $reveal_direction = get_theme_mod('plugerdy_responsive_nav_reveal_direction');
+        $reveal_direction = get_theme_mod('plugerdy_responsive_nav_reveal_direction', 'from-right');
         $premium_animation = get_theme_mod('plugerdy_responsive_menu_animation');
+
+        $nav_shadow= get_theme_mod('plugerdy_responsive_menu_shadow');
 
         // Get the selected menu ID
         $nav_menu = !empty($instance['nav_menu']) ? $instance['nav_menu'] : '';
@@ -140,7 +142,7 @@ class Plugerdy_Responsive_Menu extends WP_Widget
         // Output widget container
         echo $args['before_widget'];
 
-        echo $this->load_content($reveal_direction, $premium_animation, $nav_menu);
+        echo $this->load_content($reveal_direction, $premium_animation, $nav_menu, $nav_shadow);
 
         // Output widget closing container
         echo $args['after_widget'];
@@ -153,7 +155,7 @@ class Plugerdy_Responsive_Menu extends WP_Widget
      * @param string $premium_animation The premium animation class for the menu.
      * @param string $nav_menu The ID of the selected navigation menu.
      */
-    public function load_content($reveal_direction, $premium_animation, $nav_menu)
+    public function load_content($reveal_direction, $premium_animation, $nav_menu, $nav_shadow)
     {
         // Output navigation menu container
         ob_start();
@@ -167,7 +169,7 @@ class Plugerdy_Responsive_Menu extends WP_Widget
             </button>
 
             <!-- Output navigation menu -->
-            <nav class="plugerdy-responsive-nav <?php echo esc_attr($reveal_direction); ?> <?php echo esc_attr($premium_animation); ?>" id="plugerdy-responsive-nav" aria-expanded="false">
+            <nav class="plugerdy-responsive-nav <?php echo esc_attr($reveal_direction); ?> <?php echo esc_attr($premium_animation); ?> <?php echo esc_attr($nav_shadow); ?>" id="plugerdy-responsive-nav" aria-expanded="false">
             <?php
                 wp_nav_menu(array(
                     'menu' => $nav_menu, // Use the selected menu ID

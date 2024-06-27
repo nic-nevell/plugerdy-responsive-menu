@@ -58,6 +58,23 @@
       $('.plugerdy-btn-burger .bar').css('background-color', to)
     })
   })
+  
+  // Live preview logic for menu shadow
+  wp.customize('plugerdy_responsive_menu_shadow', function(value) {
+    value.bind(function(to) {
+      var nav = $('.plugerdy-responsive-nav');
+      
+      // Remove existing alignment classes
+      nav.removeClass('shadow-light shadow-dark');
+      
+      // Add the new alignment class
+      if (to === 'shadow-light') {
+          nav.addClass('shadow-light');
+      } else if (to === 'shadow-dark') {
+          nav.addClass('shadow-dark');
+      }
+    });
+  });
 
   // Live preview logic for navigation menu width
   wp.customize('plugerdy_responsive_menu_width', function (value) {
