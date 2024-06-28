@@ -8,6 +8,7 @@
   --plugerdy-responsive-menu-font-size: 1em;
   --plugerdy-responsive-menu-font-weight: normal;
   --plugerdy-responsive-menu-bg-color: #ffffff;
+  --plugerdy-responsive-menu-link-spacing: 1.2em;
 }
 
 .plugerdy-responsive-nav-body-no-scroll {
@@ -36,14 +37,16 @@
   box-shadow: 0 0 0.8em 0.1em #00000066;
 }
 
-
 .plugerdy-responsive-nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--plugerdy-responsive-menu-link-spacing);
   margin-right: 1em;
   list-style: none;
 }
 
-.plugerdy-responsive-nav ul > :not(:first-child) {
-  margin-top: 1em;
+.plugerdy-responsive-nav li {
+  width: max-content;
 }
 
 .plugerdy-responsive-nav[aria-expanded='false'] a {
@@ -118,6 +121,29 @@
     transform: translateY(0);
     opacity: 1;
   }
+}
+
+.plugerdy-responsive-nav.animation-on li {
+  position: relative;
+  text-decoration: none;
+}
+
+.plugerdy-responsive-nav.animation-on li::after {
+  content: '';
+  position: absolute;
+  bottom: -10%;
+  left: 0;
+  width: 100%;
+  height: 0.1em;
+  background-color: currentColor;
+  transform: scale(0, 1);
+  transform-origin: left;
+  transition: transform 0.3s linear;
+}
+
+.plugerdy-responsive-nav.animation-on li:hover::after {
+  transform: scale(1, 1);
+  transform-origin: left;
 }
 
 /* .plugerdy-responsive-nav[aria-expanded='true'] {

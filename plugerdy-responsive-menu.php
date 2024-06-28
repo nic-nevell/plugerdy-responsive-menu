@@ -78,6 +78,7 @@ class Plugerdy_Responsive_Menu extends WP_Widget
         $menu_color = get_theme_mod('plugerdy_responsive_menu_text_color');
         $menu_font_weight = get_theme_mod('plugerdy_responsive_menu_font_weight');
         $menu_font_size = get_theme_mod('plugerdy_responsive_menu_font_size');
+        $menu_link_spacing = get_theme_mod('plugerdy_responsive_menu_link_spacing');
 
         $custom_css = ":root {";
         if ($menu_width) {
@@ -112,6 +113,11 @@ class Plugerdy_Responsive_Menu extends WP_Widget
         if ($menu_font_size) {
             $menu_font_size .= 'px';
             $custom_css .= "--plugerdy-responsive-menu-font-size: {$menu_font_size}";
+        }
+
+        if ($menu_link_spacing) {
+            $menu_link_spacing .= 'px';
+            $custom_css .= "--plugerdy-responsive-menu-link-spacing: {$menu_link_spacing}";
         }
 
         $custom_css .= "}";

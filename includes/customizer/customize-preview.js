@@ -50,6 +50,14 @@
     });
   });
 
+  // Live preview logic for navigation menu link spacing
+  wp.customize('plugerdy_responsive_menu_link_spacing', function (value) {
+    value.bind(function (to) {
+      var emValue = to / baseFontSize;
+      $('.plugerdy-responsive-nav ul').css('gap', emValue + 'em');
+    });
+  });
+
   
   // Live preview logic for navigation menu text color
   wp.customize('plugerdy_responsive_menu_text_color', function (value) {

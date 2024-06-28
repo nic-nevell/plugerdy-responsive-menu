@@ -166,6 +166,24 @@ function plugerdy_responsive_menu_basic_section(\WP_Customize_Manager $wp_custom
   ),
  ));
 
+ //
+ // Link Spacing Control
+ //
+ $wp_customize->add_setting('plugerdy_responsive_menu_link_spacing', array(
+  'transport' => 'postMessage',
+  'sanitize_callback' => 'absint',
+ ));
+ $wp_customize->add_control('plugerdy_responsive_menu_link_spacing', array(
+  'type' => 'range',
+  'label' => esc_html__('Link Spacing', ''),
+  'section' => 'plugerdy_responsive_menu_basic_section',
+  'input_attrs' => array(
+   'min' => 10,
+   'max' => 30,
+   'step' => 1,
+  ),
+ ));
+
 //
  // Font Weight Control
  //
@@ -272,6 +290,7 @@ function plugerdy_responsive_menu_advanced_section(\WP_Customize_Manager $wp_cus
    ),
   )
  );
+ 
 
  //
  // Button settings
